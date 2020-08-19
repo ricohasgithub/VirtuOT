@@ -24,36 +24,32 @@ socketio.on("connection", socket => {
 
     // Listen for Vue.js client-side move requests
     socket.on("move", data => {
-
         // Update the movementIntent's x and y values from the client-side
         movementIntent.x = data.x;
         movementIntent.y = data.y;
-
-        console.log(movementIntent.x);
-        console.log(movementIntent.y);
-
     });
 
-    setInterval(function(){
-        console.log("Hello");
+    // Player movement update code
+    setInterval(function () {
 
         // Update the current x position
-        if (position.x < (movementIntent.x - 5)) {
-            position.x += 5;
-        } else if (position.x > (movementIntent.x + 5)) {
-            position.x -= 5;
+        if (position.x < (movementIntent.x - 2)) {
+            position.x += 2;
+        } else if (position.x > (movementIntent.x + 2)) {
+            position.x -= 2;
         }
 
         // Update the current y position
-        if (position.y < (movementIntent.y - 5)) {
-            position.y += 5;
-        } else if (position.y > (movementIntent.y + 5)) {
-            position.y -= 5;
+        if (position.y < (movementIntent.y - 2)) {
+            position.y += 2;
+        } else if (position.y > (movementIntent.y + 2)) {
+            position.y -= 2;
         }
 
         // Emit to the global clientbase (ALL Client machines)
         socketio.emit("position", position);
-    }, 1000);
+
+    }, 10);
 
 });
 
