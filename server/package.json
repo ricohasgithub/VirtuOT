@@ -12,7 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "socket.io": "^2.3.0"
+    "firebase": "^7.18.0",
+    "socket.io": "^2.3.0",
+    "vue-router": "^3.4.3",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
