@@ -8,7 +8,7 @@
 
 <script>
 
-    import io from "socket.io"
+    import io from "socket.io-client"
 
     export default {
         name: 'Atrium',
@@ -23,10 +23,17 @@
           }
         },
         created() {
-            this.socket = io("https://localhost:3000");
+            this.socket = io("http://localhost:3000");
         },
         mounted() {
+            // Set the context variable to the canvas object (space)
             this.context = this.$refs.space.getContext("2d");
+            // Listen for the position message emitted form the server
+            this.socket.on("position", data => {
+                this.position = data;
+                // Draw the rectangle based off of server-side position data
+                this.context.fillRect(this.position.x, this.position.y, 20, 20);
+            });
         }
     }
 

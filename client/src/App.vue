@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Atrium msg = "VirtuOT"/>
+    <Atrium/>
   </div>
 </template>
 
