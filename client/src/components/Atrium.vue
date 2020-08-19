@@ -1,8 +1,6 @@
 <template>
   <div>
-    <canvas ref = "space" width = "640" height = "480" style = "border: 1px solid black;">
-
-    </canvas>
+    <canvas ref = "space" v-on:click = "move" width = "640" height = "480" style = "border: 1px solid black;"></canvas>
   </div>
 </template>
 
@@ -30,10 +28,22 @@
             this.context = this.$refs.space.getContext("2d");
             // Listen for the position message emitted form the server
             this.socket.on("position", data => {
+                // Set the current position object to the incomming emitted data
                 this.position = data;
+                // Clear the current canvas
+                this.context.clearRect(0, 0, this.$refs.space.width, this.$refs.space.height);
                 // Draw the rectangle based off of server-side position data
                 this.context.fillRect(this.position.x, this.position.y, 20, 20);
             });
+        },
+        methods: {
+            move: function (event) {
+                let x = event.clientX;
+                let y = event.clientY;
+                let cursor = { x, y };
+                console.log(cursor);
+                this.socket.emit("move", cursor);
+            }
         }
     }
 
