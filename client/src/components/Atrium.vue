@@ -1,6 +1,6 @@
 <template>
   <div>
-    <canvas ref = "space" v-on:click = "move" width = "640" height = "480" style = "border: 1px solid black;"></canvas>
+    <canvas ref = "space" v-on:click = "move" width = "1200" height = "550" style = "border: 1px solid black;"></canvas>
   </div>
 </template>
 

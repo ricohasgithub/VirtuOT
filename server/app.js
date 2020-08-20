@@ -32,6 +32,9 @@ socketio.on("connection", socket => {
     // Player movement update code
     setInterval(function () {
 
+        // console.log(position.x);
+        // console.log(position.y);
+
         // Update the current x position
         if (position.x < (movementIntent.x - 2)) {
             position.x += 2;
