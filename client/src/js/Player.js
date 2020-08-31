@@ -20,17 +20,13 @@ export default {
         // Connect to the socket
         this.socket = io("http://localhost:3000");
         // Load the avatar images
+        //this.avatarR1 = this.loadImage(this.image[0].src);
+        //await this.avatarR1.onload;
         this.avatarR1 = new Image();
         this.avatarR1.src = this.image[0].src;
-        this.avatarR1.onload = () => { console.log("Image R1 loaded"); }
-
-        this.avatarR2 = new Image();
-        this.avatarR2.src = this.image[1].src;
-        this.avatarR2.onload = () => { console.log("Image R2 loaded"); }
-
-        this.avatarR3 = new Image();
-        this.avatarR3.src = this.image[2].src;
-        this.avatarR3.onload = () => { console.log("Image R3 loaded"); }
+        this.avatarR1.onload = function () { 
+            console.log("Image R1 Loaded");
+        };
     },
     mounted() {
 
@@ -54,7 +50,7 @@ export default {
             this.context.clearRect(0, 0, this.$refs.space.width, this.$refs.space.height);
 
             // Animate the player's avatar
-            this.context.drawImage(this.avatarR1, this.position.x, this.position.y, 180, 200);
+            this.context.drawImage(this.avatarR1, this.position.x, this.position.y, 180, 200); 
             // if (index === 0) {
             //     this.context.drawImage(this.avatarR1, this.position.x, this.position.y, 180, 200);
             //     // index++;
@@ -67,7 +63,7 @@ export default {
             // }
 
             // // Draw the rectangle based off of server-side position data
-            // this.context.fillRect(this.position.x, this.position.y, 20, 20);
+            //this.context.fillRect(this.position.x, this.position.y, 20, 20);
 
         });
     },
@@ -83,6 +79,16 @@ export default {
             };
             // Send intended position to the server
             this.socket.emit("move", cursor);
+        },
+        loadImage: function (url) {
+            console.log("LOADING IMAGE");
+            return new Promise(resolve => {
+                const image = new Image();
+                image.addEventListener('load', () => {
+                    resolve(image);
+                });
+                image.src = url;
+            });
         }
     }
 }

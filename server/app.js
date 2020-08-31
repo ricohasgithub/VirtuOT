@@ -4,6 +4,11 @@ const express = require("express")();
 const http = require("http").Server(express);
 const socketio = require("socket.io")(http);
 
+// let firebaseDB = require("firebase/database");
+
+// Create a new firebase realtime database reference
+// let firebaseRef = new firebaseDB("https://virtuot-d486f.firebaseio.com/");
+
 // Track the player's current position
 let position = {
     x: 200,

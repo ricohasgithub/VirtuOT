@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>VirtuOT</title>
+  </head>
+  <body>
+    <canvas id="space" width = "1200" height = "550" style = "border: 1px solid black;"></canvas>
+    <script>
+        var avatar = new Image();
+        avatar.onload = () => {
+            console.log("Image loaded");
+            document.getElementById("space").getContext("2d").drawImage(avatar, 100, 100, 100, 100); 
+        }
+        avatar.src = "steve.png";
+        
+    </script>
+  </body>
+</html>
